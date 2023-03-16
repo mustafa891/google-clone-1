@@ -10,7 +10,7 @@ import {actionTypes} from "../StateProvider/reducer";
 function Search({hideButtons = false}) {
 
     // eslint-disable-next-line no-empty-pattern
-    const [{}, dispatch] = useStateValue();
+    const [state, dispatch] = useStateValue();
 
     const [input, setInput] = useState("");
     const history = useHistory();
@@ -32,7 +32,7 @@ function Search({hideButtons = false}) {
             <div className="search_input">
                 <SearchIcon className="search_inputIcon"/>
                 <input
-                    value={input}
+                    value={state.term}
                     onChange={sou => setInput(sou.target.value)}
                 />
                 <MicIcon/>
