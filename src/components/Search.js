@@ -12,19 +12,19 @@ function Search({hideButtons = false}) {
     // eslint-disable-next-line no-empty-pattern
     const [{}, dispatch] = useStateValue();
 
-    const [input, setInput] = useState("");
     const history = useHistory();
 
-    const search = sou => {
-        sou.preventDefault();
-
-        console.log('Click google search button>>>', input);
-
+    
+    const setInput = (value) => {
         dispatch({
             type: actionTypes.SET_SEARCH_TERM,
-            term: input
+            term: value
         })
-
+    }
+     
+    const search = sou => {
+        sou.preventDefault();
+        console.log('Click google search button>>>', input);
         history.push("/search");
     }
     return (
@@ -32,8 +32,8 @@ function Search({hideButtons = false}) {
             <div className="search_input">
                 <SearchIcon className="search_inputIcon"/>
                 <input
-                    value={input}
-                    onChange={sou => setInput(sou.target.value)}
+                    value={state.term}
+                    onChange={e => setInput(e.target.value)}
                 />
                 <MicIcon/>
             </div>
